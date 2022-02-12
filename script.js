@@ -22,6 +22,11 @@ const regularToFinal = {
     'פ': 'ף',
     'צ': 'ץ'
 }
+const resultToImg = {
+    'correct': '🟩',
+    'present': '🟨️',
+    'absent': '⬛️'
+}
 modal.classList.remove('hidden');
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -29,6 +34,7 @@ const word = urlParams.get('word')
 const today = new Date();
 const word_index = word ? word : (today.getFullYear() + (today.getMonth() + 1) + today.getDate() % nouns.length)
 const solution = nouns[word_index];
+let resultString = "";
 console.log(solution);
 
 function createHistogram(word) {
@@ -138,8 +144,10 @@ async function handleKeyEvent(event) {
                 const currLetter = currTry[i] in finalToRegular ? finalToRegular[currTry[i]] : currTry[i];
                 letterCell.classList.add(results[i]);
                 document.querySelector(`[data-key='${currLetter}']`).classList.add(results[i]);
+                resultString += resultToImg[results[i]];
                 await timer(500);
             }
+            resultString += '\n';
             currWord = [];
             currCol = 0;
             currRow++;
@@ -147,13 +155,20 @@ async function handleKeyEvent(event) {
                 await timer(500);
                 endModal.classList.remove('hidden');
                 endModalBack.classList.remove('hidden');
-                endModalText.textContent = "כל הכבוד!";
+                endModalText.textContent =
+                    ` וורדל ${word_index}\n` +
+                    `נסיון  ${currRow} מתוך 6 `;
+                document.querySelector('.end-modal-imgs').textContent = resultString;
                 document.removeEventListener("keydown", handleKeyEvent)
             } else if (currRow === 6) {
                 await timer(500);
                 endModal.classList.remove('hidden');
                 endModalBack.classList.remove('hidden');
-                endModalText.textContent = ` המילה הנכונה היא ${solution}`;
+                endModalText.textContent =
+                    ` וורדל ${word_index}\n` +
+                    ` המילה הנכונה היא ${solution}` + '\n';
+                document.querySelector('.end-modal-imgs').textContent = resultString;
+
             }
         }
     } else {
@@ -181,7 +196,7 @@ function checkWord(word) {
     }
     for (let i = 0; i < word.length; ++i) {
         const currLetter = convertToReg(word[i]);
-        if(results[i] !== 'correct') {
+        if (results[i] !== 'correct') {
             if (solutionHistogram[currLetter] > 0) {
                 correct = false;
                 results[i] = 'present';
@@ -202,6 +217,7 @@ function setRandomIndex() {
     parser.searchParams.set('word', String(Math.floor((Math.random()) * nouns.length)));
     window.location = parser.href;
 }
+
 // Keyboard
 keyBoardButtons.forEach((btn) => {
     btn.addEventListener('click', handleKeyEvent)
