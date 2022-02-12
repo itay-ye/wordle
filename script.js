@@ -175,7 +175,10 @@ async function handleKeyEvent(event) {
         showModal(modal, "ניתן להכניס אותיות בעברית בלבד.");
     }
 }
-
+function copyToClipboard(){
+    navigator.clipboard.writeText(` וורדל ${word_index}\n` +
+        `נסיון  ${currRow} מתוך 6 `+'\n'+resultString);
+}
 function convertToReg(letter) {
     return finalToRegular[letter] || letter;
 }
