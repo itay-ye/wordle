@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="words.js"></script>
+    <script src="script.js" defer></script>
+    <title>Wordle</title>
+</head>
+<body>
+<section class="game-board">
+    <header class="game-title">
+        Wordle
+    </header>
+    <section class="game-body">
+        <div class="game-tiles">
+            <div class="tile" id="0"></div>
+            <div class="tile" id="1"></div>
+            <div class="tile" id="2"></div>
+            <div class="tile" id="3"></div>
+            <div class="tile" id="4"></div>
+            <div class="tile" id="5"></div>
+            <div class="tile" id="6"></div>
+            <div class="tile" id="7"></div>
+            <div class="tile" id="8"></div>
+            <div class="tile" id="9"></div>
+            <div class="tile" id="10"></div>
+            <div class="tile" id="11"></div>
+            <div class="tile" id="12"></div>
+            <div class="tile" id="13"></div>
+            <div class="tile" id="14"></div>
+            <div class="tile" id="15"></div>
+            <div class="tile" id="16"></div>
+            <div class="tile" id="17"></div>
+            <div class="tile" id="18"></div>
+            <div class="tile" id="19"></div>
+            <div class="tile" id="20"></div>
+            <div class="tile" id="21"></div>
+            <div class="tile" id="22"></div>
+            <div class="tile" id="23"></div>
+            <div class="tile" id="24"></div>
+            <div class="tile" id="25"></div>
+            <div class="tile" id="26"></div>
+            <div class="tile" id="27"></div>
+            <div class="tile" id="28"></div>
+            <div class="tile" id="29"></div>
+
+        </div>
+
+
+    </section>
+    <div class="game-keyboard">
+        <div class="keys">
+            <div class="row">
+                <button class="key" data-key="ק">ק</button>
+                <button class="key" data-key="ר">ר</button>
+                <button class="key" data-key="א">א</button>
+                <button class="key" data-key="ט">ט</button>
+                <button class="key" data-key="ו">ו</button>
+                <button class="key" data-key="פ">פ</button>
+                <button class="key wide-key" data-key="Delete">Delete</button>
+            </div>
+            <div class="row">
+                <button class="key" data-key="ש">ש</button>
+                <button class="key" data-key="ד">ד</button>
+                <button class="key" data-key="ג">ג</button>
+                <button class="key" data-key="כ">כ</button>
+                <button class="key" data-key="ע">ע</button>
+                <button class="key" data-key="י">י</button>
+                <button class="key" data-key="ח">ח</button>
+                <button class="key" data-key="ל">ל</button>
+
+            </div>
+            <div class="row">
+                <button class="key wide-key" data-key="Enter">Enter</button>
+                <button class="key" data-key="ז">ז</button>
+                <button class="key" data-key="ס">ס</button>
+                <button class="key" data-key="ב">ב</button>
+                <button class="key" data-key="ה">ה</button>
+                <button class="key" data-key="נ">נ</button>
+                <button class="key" data-key="מ">מ</button>
+                <button class="key" data-key="צ">צ</button>
+                <button class="key" data-key="ת">ת</button>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal hidden">This is a message</div>
+<div class="end-modal hidden">
+    <div class="end-modal-text">
+
+    </div>
+    <button class="key" onclick="setRandomIndex()">שחק שוב עם מילה אקראית</button>
+</div>
+<div class="end-modal-back hidden"></div>
+
+</body>
+</html>

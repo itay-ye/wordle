@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+html {
+    margin: 0;
+}
+body {
+    background-color: #121213;
+    color: #d7dadc;
+    margin: 0;
+    display: flex;
+}
+.game-board {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0 auto;
+    width: 500px;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+.game-body {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-flow: column;
+    width: 70%;
+}
+.game-tiles {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    column-gap: 5px;
+    row-gap: 5px;
+    justify-content: stretch;
+    align-content: stretch;
+    align-items: stretch;
+    direction: rtl;
+    font-family: 'Secular One', sans-serif;
+}
+.game-tiles .tile {
+    border: #3a3a3c solid 2px;
+    aspect-ratio: 1;
+    font-weight: bold;
+    font-size: 2.5rem;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.game-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-size: 3rem;
+    font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: #818384 1px solid;
+}
+
+
+/* Keyboard */
+
+
+/* Keyboard */
+
+.game-keyboard{
+    width: 100%;
+    max-height: 15%;
+    height: 20%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+}
+#Enter {
+
+}
+
+.game-keyboard{
+    width: 100%;
+    max-height: 15%;
+    height: 20%;
+    display: flex;
+}
+.game-keyboard .enter-key .wide-key {
+    flex: 1;
+    height: 100%;
+}
+.game-keyboard .keys {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+
+}
+.game-keyboard .row {
+    flex-grow: 1;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+.game-keyboard .key {
+    font-weight: bold;
+    font-size: 1.3rem;
+    user-select: none;
+    max-width: fit-content;
+    padding: 0 1rem;
+    color: #d7dadc;
+    background-color: #818384;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    border-radius: 3px;
+    flex: 1;
+    font-family: 'Secular One', sans-serif;
+
+}
+.game-keyboard .wide-key {
+    flex: 2;
+    max-width: fit-content;
+}
+.game-keyboard .row:nth-child(2){
+    padding: 5px 0;
+    justify-content: center;
+}
+
+/* Modal */
+.modal {
+
+    background-color: #d0d0d0;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #3a3a3c;
+    border-radius: 15px;
+    padding: 5px 20px;
+    font-size: 2rem;
+    transition: opacity 1s;
+    opacity: 0;
+    direction: rtl;
+    text-align: center;
+}
+
+.modal-show {
+    opacity: 80%;
+}
+
+.hidden {
+    display: none;
+}
+
+.correct.correct.correct.correct {
+    transition: background-color 0s linear 0.5s;
+    background-color: #538d4e;
+}
+.present.present.present {
+    background-color: #b59f3b;
+}
+.absent.absent {
+    background-color: #3a3a3c;
+}
+
+.end-modal {
+    background-color: #818384;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3rem;
+    z-index: 3;
+    border-radius: 10px;
+    box-shadow: 0 0 50px  black;
+    direction: rtl;
+    font-size: 2rem;
+    font-family: 'Secular One', sans-serif;
+    color: #d7dadc;
+    justify-content: center;
+    text-align: center;
+}
+.end-modal-back{
+    position: absolute;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    filter: blur(8px);
+    z-index: 2;
+
+}
+
+.end-modal > button {
+    font-size: 1.5rem;
+}
+/* animations */
+@-webkit-keyframes shaker {
+    0% { -webkit-transform: translate(4px, 0); }
+    10% { -webkit-transform: translate(-4px, 0); }
+    20% { -webkit-transform: translate(4px, 0); }
+    30% { -webkit-transform: translate(-4px, 0); }
+    40% { -webkit-transform: translate(4px, 0); }
+    50% { -webkit-transform: translate(-4px, 0); }
+    60% { -webkit-transform: translate(4px, 0); }
+    70% { -webkit-transform: translate(-4px, 0); }
+    80% { -webkit-transform: translate(4px, 0); }
+    90% { -webkit-transform: translate(-4px, 0); }
+    100% { -webkit-transform: translate(4px, 0); }
+}
+
+.shake.shake {
+    -webkit-animation-name: shaker;
+    -webkit-animation-duration: 0.3s;
+    -webkit-transform-origin:50% 50%;
+    -webkit-animation-timing-function: linear;
+}
+.flip.flip.flip {
+    /*transform: rotateX(180deg) scaleY(-1);*/
+    animation:flip 1s  linear;
+
+}
+
+@keyframes flip{
+    from {
+        transform: rotateX(0deg);
+        background-color: transparent;
+    }
+    49.5% {
+        background-color: transparent;
+    }
+    50% {
+
+        transform: rotateX(90deg);
+    }
+    to {
+        transform: rotateX(0deg);
+    }
+}
+
+.set_animation {
+    -webkit-animation-name: set_animation;
+    -webkit-animation-duration: 0.1s;
+    -webkit-transform-origin:50% 50%;
+    -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes set_animation {
+    0% { -webkit-transform: scale(1, 1); }
+    50% { -webkit-transform: scale(1.1, 1.1); }
+    100% { -webkit-transform: scale(1, 1); }
+}
