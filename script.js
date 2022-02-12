@@ -169,20 +169,27 @@ function convertToReg(letter) {
 function checkWord(word) {
     const solutionHistogram = createHistogram(solution);
     let correct = true;
-    const results = [];
+    const results = Array(5);
+    // find correct
     for (let i = 0; i < word.length; ++i) {
         const currLetter = convertToReg(word[i]);
 
         if (currLetter === convertToReg(solution[i])) {
-            results.push('correct');
+            results[i] = 'correct';
             solutionHistogram[currLetter]--;
-        } else if (solutionHistogram[currLetter] > 0) {
-            correct = false;
-            results.push('present');
-            solutionHistogram[currLetter]--;
-        } else {
-            correct = false;
-            results.push('absent');
+        }
+    }
+    for (let i = 0; i < word.length; ++i) {
+        const currLetter = convertToReg(word[i]);
+        if(results[i] !== 'correct') {
+            if (solutionHistogram[currLetter] > 0) {
+                correct = false;
+                results[i] = 'present';
+                solutionHistogram[currLetter]--;
+            } else {
+                correct = false;
+                results[i] = 'absent';
+            }
         }
     }
     return [results, correct];
