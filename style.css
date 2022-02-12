@@ -177,11 +177,13 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 50px  black;
     direction: rtl;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: 'Secular One', sans-serif;
     color: #d7dadc;
     justify-content: center;
     text-align: center;
+    white-space: pre-line;
+
 }
 .end-modal-back{
     position: absolute;
@@ -193,9 +195,21 @@ body {
     z-index: 2;
 
 }
+.end-modal-imgs {
+    white-space: pre-line;
+    line-height: 1;
 
+}
 .end-modal > button {
-    font-size: 1.5rem;
+    box-shadow: 0 0 5px black;
+
+    border-radius: 10px;
+    border: 0 solid black;
+    font-size: 1rem;
+}
+.end-modal > button:hover {
+    box-shadow: 0 0 15px black;
+
 }
 /* animations */
 @-webkit-keyframes shaker {
