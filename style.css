@@ -270,6 +270,8 @@ body {
 @media screen and (max-width: 800px) {
     .game-keyboard {
         width: 100vw;
+        max-height: none;
+        height: 25%;
     }
     .game-keyboard .key {
         padding: 0;
@@ -278,5 +280,6 @@ body {
     }
     .game-body {
         width: 90%;
+        flex: 0.9;
     }
 }
