@@ -32,7 +32,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const word = urlParams.get('word')
 const today = new Date();
-const word_index = word ? word : (today.getFullYear() + (today.getMonth() + 1) + today.getDate() % nouns.length)
+const word_index = word ? word :  Math.floor(Date.now() / 86400000) % nouns.length;
 const solution = nouns[word_index];
 let resultString = "";
 console.log(solution);
