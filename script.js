@@ -35,7 +35,6 @@ const today = new Date();
 const word_index = word ? word :  Math.floor(Date.now() / 86400000) % nouns.length;
 const solution = nouns[word_index];
 let resultString = "";
-console.log(solution);
 
 function createHistogram(word) {
     const histogram = {};
