@@ -31,21 +31,30 @@ modal.classList.remove('hidden');
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const word = urlParams.get('word')
-const today = new Date();
-const word_index = word ? word :  Math.floor(Date.now() / 86400000) % nouns.length;
+const word_index = word ? word : Math.floor(Date.now() / 86400000) % nouns.length;
 const solution = nouns[word_index];
 let resultString = "";
-
 const previousGuess = localStorage.getItem(word_index)
 /*
 Get previous tries
  */
 if (previousGuess){
-    const previousGuessObject = JSON.parse(previousGuess)
-    currRow = previousGuessObject.currRow
-    document.querySelector('.game-tiles').innerHTML = previousGuessObject.html
+    const previousGuessObject = JSON.parse(previousGuess);
+    currRow = previousGuessObject.currRow;
+    document.querySelector('.game-tiles').innerHTML = previousGuessObject.html;
+    if (previousGuessObject.end){
+        showEndModal();
+    }
 }
-
+function showEndModal(){
+    endModal.classList.remove('hidden');
+    endModalBack.classList.remove('hidden');
+    endModalText.textContent =
+        ` וורדל ${word_index}\n` +
+        `נסיון  ${currRow} מתוך 6 `;
+    document.querySelector('.end-modal-imgs').textContent = resultString;
+    document.removeEventListener("keydown", handleKeyEvent)
+}
 function createHistogram(word) {
     const histogram = {};
     for (let i = 0; i < word.length; ++i) {
@@ -164,13 +173,9 @@ async function handleKeyEvent(event) {
             localStorage.setItem(word_index, JSON.stringify(storageObject))
             if (correct) {
                 await timer(500);
-                endModal.classList.remove('hidden');
-                endModalBack.classList.remove('hidden');
-                endModalText.textContent =
-                    ` וורדל ${word_index}\n` +
-                    `נסיון  ${currRow} מתוך 6 `;
-                document.querySelector('.end-modal-imgs').textContent = resultString;
-                document.removeEventListener("keydown", handleKeyEvent)
+                showEndModal();
+                storageObject['end'] = true;
+                localStorage.setItem(word_index, JSON.stringify(storageObject))
             } else if (currRow === 6) {
                 await timer(500);
                 endModal.classList.remove('hidden');
