@@ -36,6 +36,16 @@ const word_index = word ? word :  Math.floor(Date.now() / 86400000) % nouns.leng
 const solution = nouns[word_index];
 let resultString = "";
 
+const previousGuess = localStorage.getItem(word_index)
+/*
+Get previous tries
+ */
+if (previousGuess){
+    const previousGuessObject = JSON.parse(previousGuess)
+    currRow = previousGuessObject.currRow
+    document.querySelector('.game-tiles').innerHTML = previousGuessObject.html
+}
+
 function createHistogram(word) {
     const histogram = {};
     for (let i = 0; i < word.length; ++i) {
@@ -150,6 +160,8 @@ async function handleKeyEvent(event) {
             currWord = [];
             currCol = 0;
             currRow++;
+            const storageObject = {'currRow': currRow, 'html': document.querySelector('.game-tiles').innerHTML}
+            localStorage.setItem(word_index, JSON.stringify(storageObject))
             if (correct) {
                 await timer(500);
                 endModal.classList.remove('hidden');
