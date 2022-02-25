@@ -42,13 +42,13 @@ body {
 }
 .game-tiles .tile {
     border: #3a3a3c solid 2px;
-    aspect-ratio: 1;
     font-weight: bold;
     font-size: 2.5rem;
     user-select: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 3.5vw;
 
 }
 .game-title {
