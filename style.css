@@ -236,7 +236,7 @@ body {
 }
 .flip.flip.flip {
     /*transform: rotateX(180deg) scaleY(-1);*/
-    animation:flip 1s  linear;
+    animation:flip 0.6s  linear;
 
 }
 
