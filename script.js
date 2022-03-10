@@ -154,6 +154,7 @@ async function handleKeyEvent(event) {
         clearTile();
     } else if (pressedKey === 'Enter') {
         const currTry = currWord.join('');
+        resultString += '‏';
         if (isValidWord(currTry)) {
             const [results, correct] = checkWord(currTry);
             for (let i = 0; i < results.length; ++i) {
