@@ -156,6 +156,7 @@ async function handleKeyEvent(event) {
         const currTry = currWord.join('');
         if (isValidWord(currTry)) {
             const [results, correct] = checkWord(currTry);
+            resultString += '‏';
             for (let i = 0; i < results.length; ++i) {
                 const letterCell = document.getElementById(`${(5 * currRow) + i}`);
                 letterCell.classList.remove('set_animation');
