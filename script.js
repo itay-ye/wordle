@@ -35,6 +35,7 @@ const word_index = word ? word : Math.floor(Date.now() / 86400000) % nouns.lengt
 const solution = nouns[word_index];
 let resultString = "";
 const previousGuess = localStorage.getItem(word_index)
+let fail = localStorage.getItem('fail') ? localStorage.getItem('fail') : false;
 /*
 Get previous tries
  */
@@ -50,9 +51,13 @@ if (previousGuess){
 function showEndModal(){
     endModal.classList.remove('hidden');
     endModalBack.classList.remove('hidden');
-    endModalText.textContent =
-        ` וורדל ${word_index}\n` +
-        `נסיון  ${currRow} מתוך 6 `;
+    let text = "";
+    if (fail) {
+        text = ` וורדל ${word_index}\n` +    `אני לוזר היום\n`+resultString;
+    } else {
+        text = ` וורדל ${word_index}\n נסיון  ${currRow} מתוך 6 `;
+    }
+    endModalText.textContent = text;
     document.querySelector('.end-modal-imgs').textContent = resultString;
     document.removeEventListener("keydown", handleKeyEvent)
 }
@@ -186,6 +191,8 @@ async function handleKeyEvent(event) {
                     ` וורדל ${word_index}\n` +
                     ` המילה הנכונה היא ${solution}` + '\n';
                 document.querySelector('.end-modal-imgs').textContent = resultString;
+                fail = true;
+                localStorage.setItem('fail', fail);
 
             }
         }
@@ -194,8 +201,11 @@ async function handleKeyEvent(event) {
     }
 }
 function copyToClipboard(){
-    navigator.clipboard.writeText(` וורדל ${word_index}\n` +
-        `נסיון  ${currRow} מתוך 6 `+'\n'+resultString);
+    if (fail) {
+        navigator.clipboard.writeText(` וורדל ${word_index}\n` +    `אני לוזר היום\n`+resultString);
+    } else {
+        navigator.clipboard.writeText(` וורדל ${word_index}\n` + `נסיון  ${currRow} מתוך 6 `+'\n'+resultString);
+    }
 }
 function convertToReg(letter) {
     return finalToRegular[letter] || letter;
