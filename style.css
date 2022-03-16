@@ -12,7 +12,8 @@ body {
 .game-board {
     display: flex;
     flex-direction: column;
-    height: 85vh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     margin: 0 auto;
     width: 500px;
     max-width: 100vw;
