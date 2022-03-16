@@ -27,6 +27,7 @@ body {
     justify-content: center;
     flex-flow: column;
     width: 70%;
+    padding: 1rem 0;
 }
 .game-tiles {
     display: grid;
