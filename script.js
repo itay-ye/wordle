@@ -35,7 +35,8 @@ const word_index = word ? word : Math.floor(Date.now() / 86400000) % nouns.lengt
 const solution = nouns[word_index];
 let resultString = "";
 const previousGuess = localStorage.getItem(word_index)
-let fail = localStorage.getItem('fail') ? localStorage.getItem('fail') : false;
+let fail = localStorage.getItem(`${word_index}_fail`) ? localStorage.getItem(`${word_index}_fail`)) : false;
+
 /*
 Get previous tries
  */
@@ -192,8 +193,7 @@ async function handleKeyEvent(event) {
                     ` המילה הנכונה היא ${solution}` + '\n';
                 document.querySelector('.end-modal-imgs').textContent = resultString;
                 fail = true;
-                localStorage.setItem('fail', fail);
-
+                localStorage.setItem(`${word_index}_fail`, fail);
             }
         }
     } else {
