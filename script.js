@@ -36,7 +36,7 @@ const solution = nouns[word_index];
 let resultString = "";
 const previousGuess = localStorage.getItem(word_index)
 let fail = localStorage.getItem(`${word_index}_fail`) ? localStorage.getItem(`${word_index}_fail`) : false;
-
+let keyFlag = true;
 /*
 Get previous tries
  */
@@ -153,6 +153,10 @@ function isValidWord(word) {
 const timer = ms => new Promise(res => setTimeout(res, ms))
 
 async function handleKeyEvent(event) {
+    if (!keyFlag) {
+        return;
+    }
+    keyFlag = false;
     let pressedKey = (event instanceof KeyboardEvent) ? event.key : event.target.dataset.key;
     if (!pressedKey.search('[אבגדהוזחטיכלמנסעפצקרשתםףךןץ]')) {
         setTile(pressedKey);
@@ -199,6 +203,7 @@ async function handleKeyEvent(event) {
     } else {
         showModal(modal, "ניתן להכניס אותיות בעברית בלבד.");
     }
+    keyFlag = true;
 }
 function copyToClipboard(){
     if (fail) {
