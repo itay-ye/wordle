@@ -45,6 +45,10 @@ if (previousGuess){
     currRow = previousGuessObject.currRow;
     document.querySelector('.game-tiles').innerHTML = previousGuessObject.html;
     resultString = previousGuessObject.resultString;
+    console.log(previousGuessObject)
+    if (previousGuessObject.keys){
+        document.querySelector('.game-keyboard').innerHTML = previousGuessObject.keys;
+    }
     if (previousGuessObject.end){
         showEndModal();
     }
@@ -181,7 +185,8 @@ async function handleKeyEvent(event) {
             currWord = [];
             currCol = 0;
             currRow++;
-            const storageObject = {'currRow': currRow, 'html': document.querySelector('.game-tiles').innerHTML,'resultString': resultString}
+            const storageObject = {'currRow': currRow, 'html': document.querySelector('.game-tiles').innerHTML,'resultString': resultString, 'keys':document.querySelector('.game-keyboard').innerHTML}
+            console.log(storageObject)
             localStorage.setItem(word_index, JSON.stringify(storageObject))
             if (correct) {
                 await timer(500);
