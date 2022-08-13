@@ -45,10 +45,10 @@ if (previousGuess){
     currRow = previousGuessObject.currRow;
     document.querySelector('.game-tiles').innerHTML = previousGuessObject.html;
     resultString = previousGuessObject.resultString;
-    console.log(previousGuessObject)
-    if (previousGuessObject.keys_dict){
+    // console.log(previousGuessObject)
+    if (previousGuessObject.keys_dict_text){
         keyBoardButtons.forEach((btn) => {
-            btn.classList.value = previousGuessObject.keys_dict[btn.textContent].join(" ")
+            btn.classList.value = previousGuessObject.keys_dict_text[btn.textContent]
         })        
     }
     if (previousGuessObject.end){
@@ -161,11 +161,12 @@ const timer = ms => new Promise(res => setTimeout(res, ms))
 function get_keyboard_status(){
     const keys_dict = {}
     keyBoardButtons.forEach((btn) => {
-        const classes = []
-        btn.classList.forEach((class_name) => {
-            classes.push(class_name)
-        })
-        keys_dict[btn.textContent] = classes
+        // This could be just classList.value
+        // const classes = []
+        // btn.classList.forEach((class_name) => {
+        //     classes.push(class_name)
+        // })
+        keys_dict[btn.textContent] =  btn.classList.value
     })
     return keys_dict
     
@@ -199,8 +200,8 @@ async function handleKeyEvent(event) {
             currWord = [];
             currCol = 0;
             currRow++;
-            const storageObject = {'currRow': currRow, 'html': document.querySelector('.game-tiles').innerHTML,'resultString': resultString, 'keys_dict':get_keyboard_status()}
-            console.log(storageObject)
+            const storageObject = {'currRow': currRow, 'html': document.querySelector('.game-tiles').innerHTML,'resultString': resultString, 'keys_dict_text':get_keyboard_status()}
+            // console.log(storageObject)
             localStorage.setItem(word_index, JSON.stringify(storageObject))
             if (correct) {
                 await timer(500);
