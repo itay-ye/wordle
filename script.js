@@ -46,8 +46,10 @@ if (previousGuess){
     document.querySelector('.game-tiles').innerHTML = previousGuessObject.html;
     resultString = previousGuessObject.resultString;
     console.log(previousGuessObject)
-    if (previousGuessObject.keys){
-        document.querySelector('.game-keyboard').innerHTML = previousGuessObject.keys;
+    if (previousGuessObject.keys_dict){
+        keyBoardButtons.forEach((btn) => {
+            btn.classList.value = previousGuessObject.keys_dict[btn.textContent].join(" ")
+        })        
     }
     if (previousGuessObject.end){
         showEndModal();
@@ -156,6 +158,18 @@ function isValidWord(word) {
 
 const timer = ms => new Promise(res => setTimeout(res, ms))
 
+function get_keyboard_status(){
+    const keys_dict = {}
+    keyBoardButtons.forEach((btn) => {
+        const classes = []
+        btn.classList.forEach((class_name) => {
+            classes.push(class_name)
+        })
+        keys_dict[btn.textContent] = classes
+    })
+    return keys_dict
+    
+}
 async function handleKeyEvent(event) {
     if (!keyFlag) {
         return;
@@ -185,7 +199,7 @@ async function handleKeyEvent(event) {
             currWord = [];
             currCol = 0;
             currRow++;
-            const storageObject = {'currRow': currRow, 'html': document.querySelector('.game-tiles').innerHTML,'resultString': resultString, 'keys':document.querySelector('.game-keyboard').innerHTML}
+            const storageObject = {'currRow': currRow, 'html': document.querySelector('.game-tiles').innerHTML,'resultString': resultString, 'keys_dict':get_keyboard_status()}
             console.log(storageObject)
             localStorage.setItem(word_index, JSON.stringify(storageObject))
             if (correct) {
