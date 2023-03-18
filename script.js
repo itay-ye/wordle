@@ -128,7 +128,7 @@ function clearTile() {
     const currTile = document.getElementById(`${prevCell}`);
     currTile.classList.remove('set_animation');
     currTile.style.removeProperty('border-color')
-    currTile.textContent = "";
+    currTile.textContent = "\u2060";
     currWord.pop();
     if (currCol > 0) {
         currCol--;
